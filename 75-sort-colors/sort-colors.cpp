@@ -1,18 +1,25 @@
 class Solution {
 public:
+void swap(int* a,int* b){
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
     void sortColors(vector<int>& nums) {
-        int r=0;
-        int w=0;
-        int b=0;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==0)r++;
-             if(nums[i]==1)w++;
-             if(nums[i]==2) b++;
+     int* low=&nums[0];
+     int* mid=&nums[0];
+     int* high=&nums[nums.size()-1];
+     while(mid<=high){
+        if(*mid==0){
+            swap(mid,low);
+            mid++;
+            low++;
         }
-        for(int i=0;i<nums.size();i++){
-            if(i<r)nums[i]=0;
-            else if(i<r+w)nums[i]=1;
-            else if(i<r+w+b)nums[i]=2;
+        else if(*mid==2){
+            swap(mid,high);
+            high--;
         }
+        else mid++;
+     }
     }
 };
