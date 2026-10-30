@@ -1,24 +1,23 @@
 class Solution {
 public:
-     void reversePart(vector<int>&v,int a,int b){
-            int* i=&v[a];
-            int* j=&v[b];
-            while(i<j){
-                int temp=*j;
-                *j=*i;
-                *i=temp;
-                i++;
-                j--;
-            }
-        }
+   void reverseArr(vector<int>& arr,int a , int b){
+    while(a<b){
+        int temp=arr[a];
+        arr[a]=arr[b];
+        arr[b]=temp;
+        a++;
+        b--;
+    }
+   }
     void rotate(vector<int>& nums, int k) {
+        if(k>nums.size()){
+            k=k%nums.size();
+        }
         int n=nums.size();
-       k=k%n;
-       
+        reverseArr(nums,0,n-k-1);
+        reverseArr(nums,n-k,n-1);
+        reverseArr(nums,0,n-1);
         
-        reversePart(nums,0,n-k-1);
-        reversePart(nums,n-k,n-1);
-        reversePart(nums,0,n-1);
         
     }
 };
